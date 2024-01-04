@@ -37,7 +37,7 @@ function App() {
   };
 
   return (
-    <div className='app'>
+    <div className='app1'>
       <TodoInput onAdd={addTodo} />
 
       <div className='todos'>
