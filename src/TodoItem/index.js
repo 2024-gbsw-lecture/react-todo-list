@@ -1,4 +1,4 @@
-import './index.css';
+import styled from 'styled-components';
 
 const TodoItem = (props) => {
   const onToggle = () => {
@@ -10,30 +10,50 @@ const TodoItem = (props) => {
   };
 
   return (
-    <div className='todo-item-wrapper'>
+    <TodoItemWrapper>
       <div>
-        <label
-          className={`todo-item-label ${props.completed ? 'line-through' : ''}`}
+        <TodoItemLabel
+          completed={props.completed}
           onChange={onToggle}
         >
           <input
             type='checkbox'
             checked={props.completed}
           />
-          <span className='todo-item-content'>{props.content}</span>
-        </label>
+          <span>{props.content}</span>
+        </TodoItemLabel>
       </div>
 
       <div>
-        <button
-          className='todo-delete-button'
-          onClick={onDelete}
-        >
-          삭제하기
-        </button>
+        <TodoDeleteButton onClick={onDelete}>삭제하기</TodoDeleteButton>
       </div>
-    </div>
+    </TodoItemWrapper>
   );
 };
+
+const TodoItemWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const TodoDeleteButton = styled.button`
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 14px;
+  color: white;
+  background-color: red;
+  cursor: pointer;
+`;
+
+const TodoItemLabel = styled.label`
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  text-decoration: ${(props) => (props.completed ? 'line-through' : '')};
+`;
 
 export default TodoItem;

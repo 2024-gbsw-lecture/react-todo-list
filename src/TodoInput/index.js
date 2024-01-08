@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './index.css';
+import styled from 'styled-components';
 
 const TodoInput = (props) => {
   const [content, setContent] = useState('');
@@ -15,9 +15,8 @@ const TodoInput = (props) => {
   };
 
   return (
-    <div className='todo-input-wrapper'>
-      <input
-        className='todo-input'
+    <TodoInputWrapper>
+      <TodoInputElement
         placeholder='할 일을 입력하세요.'
         value={content}
         onChange={changeContent}
@@ -29,8 +28,21 @@ const TodoInput = (props) => {
       >
         확인
       </button>
-    </div>
+    </TodoInputWrapper>
   );
 };
+
+const TodoInputWrapper = styled.div`
+  display: flex;
+  gap: 8px;
+`;
+
+const TodoInputElement = styled.input`
+  flex: 1;
+  outline: none;
+  border: 1px solid #dedede;
+  border-radius: 5px;
+  padding: 8px 12px;
+`;
 
 export default TodoInput;
